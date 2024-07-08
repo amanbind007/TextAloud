@@ -333,16 +333,12 @@ extension SettingsView{
                     
                     Divider().padding(.vertical, 4)
                     
-                    Stepper {
+                    Stepper(value: $settingVM.fontSize, in: 12 ... 40) {
                         HStack {
                             Text(Localization.fontSize.toString)
                             Spacer()
                             Text("\(settingVM.fontSize)")
                         }
-                    } onIncrement: {
-                        settingVM.incrementStep()
-                    } onDecrement: {
-                        settingVM.decrementStep()
                     }
                 }
                 .font(.headline.weight(.medium))
