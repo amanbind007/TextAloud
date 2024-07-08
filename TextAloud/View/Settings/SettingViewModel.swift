@@ -156,12 +156,5 @@ extension SettingViewModel{
         return temp
     }
     
-    func incrementStep() {
-        fontSize += 1
-    }
-
-    func decrementStep() {
-        fontSize -= 1
-    }
 }
 
