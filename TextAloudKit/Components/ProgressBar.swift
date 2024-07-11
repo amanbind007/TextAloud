@@ -8,25 +8,39 @@
 import SwiftUI
 
 struct ProgressBar: View {
-    var value: Int
-    var total: Int
+    var value: CGFloat
+    var total: CGFloat
     let color: Color
+    
+    let xOffset: CGFloat = 3
 
     var progress: CGFloat {
-        return CGFloat(value) / CGFloat(total)
+        value / total
+    }
+
+    public init(value: Int, total: Int, color: Color) {
+        self.value = CGFloat(value)
+        self.total = CGFloat(total)
+        self.color = color
     }
 
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 RoundedRectangle(cornerRadius: geometry.size.height)
-                    .frame(width: geometry.size.width + 6, height: geometry.size.height + 6)
                     .foregroundStyle(color.opacity(0.3))
+                    .frame(
+                        width: geometry.size.width + xOffset*2,
+                        height: geometry.size.height + xOffset*2
+                    )
 
                 RoundedRectangle(cornerRadius: geometry.size.height)
-                    .frame(width: max(CGFloat(progress) * geometry.size.width, geometry.size.height), height: geometry.size.height)
                     .foregroundStyle(color)
-                    .offset(x: 3)
+                    .frame(
+                        width: max(CGFloat(progress) * geometry.size.width, geometry.size.height),
+                        height: geometry.size.height
+                    )
+                    .offset(x: xOffset)
             }
         }
         .frame(height: 8)
