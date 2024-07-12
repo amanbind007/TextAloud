@@ -358,9 +358,6 @@ extension RootView{
                 total: rootVM.text.count,
                 color: .limeChalk
             )
-            .onAppear(perform: {
-                print(currentWord.upperBound)
-            })
             
         } else {
             
