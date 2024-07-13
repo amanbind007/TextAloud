@@ -26,24 +26,24 @@ struct ProgressBar: View {
 
     var body: some View {
         GeometryReader { geometry in
-            ZStack(alignment: .leading) {
-                RoundedRectangle(cornerRadius: geometry.size.height)
-                    .foregroundStyle(color.opacity(0.3))
-                    .frame(
-                        width: geometry.size.width + xOffset*2,
-                        height: geometry.size.height + xOffset*2
-                    )
+            ZStack {
+                RoundedRectangle(cornerRadius: 6)
+                    .foregroundColor(color.opacity(0.5))
+                    .overlay {
+                        HStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .foregroundColor(color)
+                                .padding(2)
+                                .frame(width: max(geometry.size.width * progress, 12), height: 12)
+                                .animation(.easeInOut(duration: 0.5), value: progress)
 
-                RoundedRectangle(cornerRadius: geometry.size.height)
-                    .foregroundStyle(color)
-                    .frame(
-                        width: max(CGFloat(progress) * geometry.size.width, geometry.size.height),
-                        height: geometry.size.height
-                    )
-                    .offset(x: xOffset)
+                            Spacer(minLength: 0)
+                        }
+                    }
             }
+            
         }
-        .frame(height: 8)
+        .frame(height: 12)
     }
 }
 
